@@ -25,7 +25,8 @@ ActiveAdmin.register Project do
     end
 
     f.actions do
-      f.submit "Update Project", method: :put
+      f.action :submit
+      f.cancel_link({action: "show"})
     end
   end
 
