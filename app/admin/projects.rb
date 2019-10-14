@@ -15,6 +15,20 @@ ActiveAdmin.register Project do
     actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :description, as: :text
+      f.input :non_profit_goals, as: :text
+      f.input :team_resource_needs, as: :text
+      f.input :non_profit_questions, as: :text
+    end
+
+    f.actions do
+      f.submit "Update Project", method: :put
+    end
+  end
+
   show do
     attributes_table do
       row :name
