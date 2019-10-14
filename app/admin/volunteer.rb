@@ -30,7 +30,7 @@ ActiveAdmin.register Volunteer do
       end
       (1..5).to_a.reverse.each do |i|
         row "Level #{i} Skills" do
-          volunteer.skills.filter! { |k,v| v == i }.map { |v| v[0].to_s.humanize }
+          volunteer.skills.filter! { |k,v| v == i }&.map { |v| v[0].to_s.humanize }
         end
       end
       active_admin_comments
