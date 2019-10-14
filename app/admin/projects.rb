@@ -45,7 +45,8 @@ ActiveAdmin.register Project do
           column "Email", :email
           column "Job Title", :job_title
           column "Skills" do |volunteer|
-            volunteer.skills.sort_by { |k,v| -v }.map { |v| v[0].to_s.humanize }
+            volunteer.skills.keep_if { |k,v| v >= 3 }
+                            .sort_by { |k,v| -v }.map { |v| v[0].to_s.humanize }
           end
         end
       end
