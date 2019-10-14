@@ -26,7 +26,7 @@ ActiveAdmin.register Volunteer do
       row :job_title
       row :employer
       row :linkedin_url do
-        link_to(volunteer.linkedin_url, volunteer.linkedin_url)
+        link_to(volunteer.linkedin_url, volunteer.linkedin_url) unless volunteer.linkedin_url.blank?
       end
       (1..5).to_a.reverse.each do |i|
         row "Level #{i} Skills" do
