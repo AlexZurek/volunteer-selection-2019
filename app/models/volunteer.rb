@@ -70,6 +70,6 @@ class Volunteer < ApplicationRecord
 		skills[:photography] = photography
 		skills[:videography] = videography
 
-		skills.keep_if { |k,v| v >= 3 }
+		skills.keep_if { |k,v| v != nil && v >= 3 }
 	end
 end
