@@ -1,17 +1,22 @@
 ActiveAdmin.register Project do
   actions :all, except: [:destroy]
 
-  permit_params :name, :description, :team_resource_needs, :non_profit_goals, :non_profit_questions, volunteer_ids: []
+  permit_params :name,
+                :description,
+                :team_resource_needs,
+                :non_profit_goals,
+                :non_profit_questions,
+                volunteer_ids: []
 
   config.filters = false
 
   index do
     column "Name", :name
-    column "Description", :description
-    column "Non-Profit Goals", :non_profit_goals
     column "Team Size" do |project|
       project.volunteers.count
     end
+    column "Description", :description
+    column "Non-Profit Goals", :non_profit_goals
     actions
   end
 
