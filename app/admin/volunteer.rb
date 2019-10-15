@@ -29,6 +29,7 @@ ActiveAdmin.register Volunteer do
       row :phone_number
       row :job_title
       row :employer
+      row :bio
       row :linkedin_url do
         link_to(volunteer.linkedin_url, volunteer.linkedin_url) unless volunteer.linkedin_url.blank?
       end
