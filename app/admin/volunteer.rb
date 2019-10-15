@@ -1,5 +1,13 @@
 ActiveAdmin.register Volunteer do
-  permit_params :first_name, :last_name, :email, :phone_number, :project_id
+  permit_params :first_name,
+                :last_name,
+                :email,
+                :phone_number,
+                :project_id,
+                :linkedin_url,
+                :bio,
+                :job_title,
+                :employer
 
   active_admin_import
 
@@ -18,6 +26,25 @@ ActiveAdmin.register Volunteer do
     column "Phone #", :phone_number
     column "Project", :project
     actions
+  end
+
+  form title: proc{ |v| "#{v.first_name} #{v.last_name}"} do |f|
+    f.inputs do
+      f.input :project
+      f.input :first_name
+      f.input :last_name
+      f.input :email
+      f.input :phone_number
+      f.input :job_title
+      f.input :employer
+      f.input :bio, as: :text
+      f.input :linkedin_url
+    end
+
+    f.actions do
+      f.action :submit
+      f.cancel_link({action: "show"})
+    end
   end
 
   show title: proc{ |v| "#{v.first_name} #{v.last_name}"} do
