@@ -7,6 +7,10 @@ ActiveAdmin.register Volunteer do
   scope :allocated
   scope :not_allocated
 
+  # Config Filters
+  remove_filter :bio, :project, :linkedin_url
+  remove_filter :front_end, :back_end  # don't show up as numeric by default ¯\_(ツ)_/¯
+
   index do
     column "First Name", :first_name
     column "Last Name", :last_name
