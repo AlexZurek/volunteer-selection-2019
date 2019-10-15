@@ -24,7 +24,7 @@ ActiveAdmin.register Volunteer do
     column "Last Name", :last_name
     column "Email", :email
     column "Phone #", :phone_number
-    column "Project", :project
+    column "Project", :project, sortable: :project_id
     actions
   end
 
