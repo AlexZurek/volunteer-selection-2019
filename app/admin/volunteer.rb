@@ -24,6 +24,9 @@ ActiveAdmin.register Volunteer do
     column "Last Name", :last_name
     column "Email", :email
     column "Phone #", :phone_number
+    column "LinkedIn URL", :linkedin_url do |v|
+      link_to v.linkedin_url, v.linkedin_url unless v.linkedin_url.blank?
+    end
     column "Project", :project, sortable: :project_id
     actions
   end
