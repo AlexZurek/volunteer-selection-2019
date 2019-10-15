@@ -43,7 +43,7 @@ ActiveAdmin.register Volunteer do
 
     f.actions do
       f.action :submit
-      f.cancel_link({action: "show"})
+      f.action :cancel, :wrapper_html => { :class => 'cancel'}
     end
   end
 
