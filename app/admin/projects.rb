@@ -10,6 +10,23 @@ ActiveAdmin.register Project do
 
   config.filters = false
 
+  action_item :download do
+    link_to "Download", download_csv_admin_projects_path()
+  end
+
+  collection_action :download_csv, method: :get do
+    csv_data = CSV.generate do |csv|
+      csv << ["Non Profit", "Volunteer", "Email", "Phone Number", "Top Skills"]
+      Project.all.each do |project|
+        project.volunteers.each do |v|
+          csv << [project.name, "#{v.first_name} #{v.last_name}", v.email, v.phone_number, v.top_skills.to_s]
+        end
+      end
+    end
+
+    send_data csv_data, filename: "WFG2019-Team_Allocations.csv"
+  end
+
   index do
     column "Name", :name
     column "Team Size" do |project|
@@ -49,9 +66,8 @@ ActiveAdmin.register Project do
           end
           column "Email", :email
           column "Job Title", :job_title
-          column "Skills" do |volunteer|
-            volunteer.skills.keep_if { |k,v| v >= 3 }
-                            .sort_by { |k,v| -v }.map { |v| v[0].to_s.humanize }
+          column "Skills" do |v|
+            v.top_skills
           end
         end
       end
